@@ -19,14 +19,15 @@ function App() {
   // State for weather data
   const [weatherData, setWeatherData] = useState(null);
   // State for location name
-  const [name, setName] = useState("New Delhi");
+  const [alert, setAlert] = useState("can't find location");
+  const [alertVisible, setAlertVisible] = useState(false);
 
   // Fetch weather data on component mount
   useEffect(() => {
     const fetchDefaultData = async () => {
       const data = await wetherInfo(location);
       setWeatherData(data);
-      console.log(data);
+      // console.log(data);
     };
     fetchDefaultData();
   }, []);
@@ -40,33 +41,50 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await wetherInfo(location);
-    setWeatherData(data);
-    console.log(data);
+    if (data.error) {
+      setAlert("can't find location");
+      setAlertVisible(true);
+      setTimeout(() => {
+        setAlertVisible(false);
+      }, 3000);
+    } else {
+      setWeatherData(data);
+    }
   };
+
+  // console.log(alert);
 
   return (
     // Main container with background image
     <div
-      className="flex justify-center h-screen items-center"
+      className="flex justify-center h-full xl:h-screen items-center flex-col relative "
       style={background}
     >
+      <div
+        className={`alert ${alertVisible ? "show" : ""}`}
+      >
+        {alert}
+      </div>
+
       {/* Weather information container */}
-      <div className="flex justify-start  items-center gap-10  pt-4 pb-4 pl-10 pr-10 bg-blur  h-[30rem] w-[52rem] rounded-3xl">
+      <div className="flex justify-start flex-col-reverse xl:flex-row items-center gap-10  pt-4 pb-4 xl:pt-4 xl:pb-4 xl:pl-10 xl:pr-10 bg-blur w-full  xl:h-[30rem] xl:w-[52rem]  xl:rounded-3xl open-tan">
         {/* Details section */}
-        <div className="w-[40%] h-[full] flex flex-col justify-between gap-4 border-r-[1px] pr-10">
+        <div className="sm:w-full w-full pl-6 pr-6 xl:w-[40%] h-[full] flex flex-col justify-between gap-4 xl:border-r-[1px] xl:pr-10">
           {/* Details header */}
-          <div className="h-[50%]">
-            <h3 className="text-2xl border-b-[1px] pb-2  font-bold text-white">
+          <div className="h-[50%] ">
+            <h3 className="text-3xl tracking-[.2rem] xl:text-2xl border-b-[1px] text-center xl:text-start pb-4 xl:pb-2 font-bold text-white">
               Details
             </h3>
             {/* Weather information */}
             {weatherData ? (
-              <div className="info mt-4 flex flex-col gap-2">
+              <div className="info mt-8 xl:mt-4 flex pb-[2rem] xl:pb-[0rem] flex-col gap-5 xl:gap-2 open-tran">
                 {/* Country */}
                 {weatherData && (
                   <div className="flex justify-between">
                     <span className="text-lg ">Country</span>{" "}
-                    <span className="w-[8rem] text-end">{weatherData.location.country} </span>
+                    <span className="w-[8rem] text-end">
+                      {weatherData.location.country}{" "}
+                    </span>
                   </div>
                 )}
                 {/* Cloud */}
@@ -100,29 +118,30 @@ function App() {
           </div>
           {/* Locations section */}
           <div className="h-[50%] ">
-            <h3 className="text-2xl border-b-[1px] pb-2 font-bold text-white">
+            <h3 className=" text-3xl tracking-[.2rem] xl:text-2xl border-b-[1px] text-center xl:text-start pb-4 xl:pb-2 font-bold text-white">
               Locations
             </h3>
 
             {/* List of locations */}
-            <div className="flex flex-col gap-3 items-start mt-4">
-              <button className="text-lg ">Los Angeles</button>
-              <button className="text-lg ">London</button>
-              <button className="text-lg ">Dubai</button>
-              <button className="text-lg ">Nepal</button>
+            <div className="flex items-center xl:items-start flex-col gap-5 xl:gap-3 mt-8 xl:mt-4 open-tran">
+              <button className="text-2xl xl:text-lg ">Los Angeles</button>
+              <button className="text-2xl xl:text-lg ">London</button>
+              <button className="text-2xl xl:text-lg ">Dubai</button>
+              <button className="text-2xl xl:text-lg ">Nepal</button>
             </div>
           </div>
+          <span className="mt-12 text-[12px] text-center xl:hidden">developed by Sujan Thapa</span>
         </div>
 
         {/* Forecast section */}
         <div className="w-[60%] h-full flex flex-col justify-start ">
           {/* Searchbar and forecast header */}
-          <div className="flex justify-between items-center mt-4 w-full">
+          <div className="flex justify-between items-center gap-5 xl:gap-[0px] flex-col xl:flex-row  mt-4 w-full">
             <h3 className="text-xl">Forecast</h3>
             <form className="flex items-center gap-2" onSubmit={handleSubmit}>
               <input
                 type="text"
-                className="bg-white h-10 w-40 rounded-full text-black pl-4  outline-none shadow-xl"
+                className="bg-white h-10 w-64 xl:w-40 rounded-full text-black pl-4  outline-none shadow-xl"
                 placeholder="Search"
                 onChange={handleOnChange}
               />
@@ -138,7 +157,7 @@ function App() {
           {/* Temperature display */}
           <div className="temprature text-center w-full h-[16rem]">
             {weatherData ? (
-              <span className="text-[11rem] leading-[16rem]   ">
+              <span className=" text-[8rem] xl:text-[11rem]  leading-[16rem] open-tran">
                 {weatherData.current.temp_c}&deg;
               </span>
             ) : (
@@ -149,9 +168,9 @@ function App() {
           </div>
           {/* Weather information */}
           <div className="border-t-[1px] flex flex-col justify-center items-center  ">
-            <div className="flex mt-2 gap-[10rem] items-center justify-center">
+            <div className="flex mt-2 gap-10 xl:gap-[10rem] items-center justify-center">
               {weatherData ? (
-                <div className="wrapper-1 flex flex-col justify-center items-center">
+                <div className="wrapper-1 flex flex-col justify-center items-center open-tran">
                   <span className="text-3xl mt-4">
                     {weatherData && weatherData.location.region}
                   </span>
@@ -160,26 +179,31 @@ function App() {
                   </span>
                 </div>
               ) : (
-                <div className="loader"></div>
+                <div className="loader mt-6 mb-7"></div>
               )}
 
-              <div className="wrapper-2">
+              <div className="wrapper-2 open-tran">
                 {weatherData ? (
                   <div className="weather-icon flex flex-col justify-center items-center">
                     {weatherData && (
-                      <img className="h-18" src={weatherData.current.condition.icon} />
+                      <img
+                        className="h-18"
+                        src={weatherData.current.condition.icon}
+                      />
                     )}
                     {weatherData && weatherData.current.condition.text}
                   </div>
                 ) : (
-                  <div className="loader"> </div>
+                  <div className="loader mt-6 mb-7"> </div>
                 )}
               </div>
             </div>
-            <span className="mt-6 text-[12px]">developed by Sujan Thapa</span>
-            </div>
+            <span className="mt-6 text-[12px] hidden  xl:flex">developed by Sujan Thapa</span>
+          </div>
+          
         </div>
       </div>
+     
     </div>
   );
 }
