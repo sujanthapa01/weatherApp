@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.smooth{
+transition: all 100ms cubic-bezier(0.85, 0, 0.15, 1) ;
+}
+
+.smooth:hover{
+    scale: 1.2;
+}
+
+.smooth:active{
+    scale:1;
+}
