@@ -17,7 +17,6 @@ setLocation( e.target.value)
     const weatherData = await wetherInfo(location)
 console.log(weatherData)
 
-    console.log(weatherData.loction.name);
     // return weatherData
   };
 
@@ -25,14 +24,14 @@ console.log(weatherData)
     <form className='flex items-center gap-2' onSubmit={handleSubmit}>
       <input
         type="text"
-        className='bg-blue-300 h-10 w-80 rounded-full pl-4 text-white outline-none shadow-xl placeholder-shown:border-white-500 transition duration-100 focus:shadow-sky-100 focus:shadow-md'
+        className='bg-white h-10 w-40 rounded-full text-black pl-4  outline-none shadow-xl'
         placeholder='Search'
      onChange={handleOnChange}
        
       />
       <button
         type="submit"
-        className='bg-blue-300 p-2 rounded-full shadow-md hover:shadow-sky-400 duration-100 smooth'
+        className='bg-white p-2 rounded-full shadow-md  smooth'
       >
         <img className='w-6 h-6' src={search} alt="" />
       </button>

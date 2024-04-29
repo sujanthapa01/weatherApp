@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .smooth{
 transition: all 100ms cubic-bezier(0.85, 0, 0.15, 1) ;
 }
@@ -13,3 +14,16 @@ transition: all 100ms cubic-bezier(0.85, 0, 0.15, 1) ;
 .smooth:active{
     scale:1;
 }
+
+.bg-blur{
+    background: linear-gradient(245deg, rgba(0, 0, 0, 0.11) 27%, rgba(0, 0, 0, 0.425) 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 4px white inset;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    color: white;
+  }
+  
+  
