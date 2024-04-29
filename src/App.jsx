@@ -42,7 +42,6 @@ function App() {
     e.preventDefault();
     const data = await wetherInfo(location);
     if (data.error) {
-      setAlert("can't find location");
       setAlertVisible(true);
       setTimeout(() => {
         setAlertVisible(false);
@@ -57,13 +56,11 @@ function App() {
   return (
     // Main container with background image
     <div
-      className="flex justify-center h-full xl:h-screen items-center flex-col relative "
+      className="flex justify-center h-full xl:h-screen items-center text-center  flex-col relative "
       style={background}
     >
-      <div
-        className={`alert ${alertVisible ? "show" : ""}`}
-      >
-        {alert}
+      <div className={`alert ${alertVisible ? "show" : ""}`}>
+  {alert}
       </div>
 
       {/* Weather information container */}
