@@ -127,7 +127,7 @@ function App() {
               <button className="text-2xl xl:text-lg ">Nepal</button>
             </div>
           </div>
-          <span className="mt-12 text-[12px] text-center xl:hidden">developed by Sujan Thapa</span>
+          <span className="mt-12 text-[12px] text-neutral-500  text-center xl:hidden">developed by Sujan Thapa</span>
         </div>
 
         {/* Forecast section */}
@@ -165,13 +165,13 @@ function App() {
           </div>
           {/* Weather information */}
           <div className="border-t-[1px] flex flex-col justify-center items-center  ">
-            <div className="flex mt-2 gap-10 xl:gap-[10rem] items-center justify-center">
+            <div className="flex mt-2 gap-10 items-center justify-between">
               {weatherData ? (
-                <div className="wrapper-1 flex flex-col justify-center items-center open-tran">
-                  <span className="text-3xl mt-4">
+                <div className="wrapper-1 xl:text-start flex flex-col justify-center xl:items-start open-tran">
+                  <span className="text-3xl mt-4  xl:w-rem">
                     {weatherData && weatherData.location.region}
                   </span>
-                  <span className="mt-2">
+                  <span className="mt-2 ">
                     {weatherData && weatherData.location.localtime}
                   </span>
                 </div>
@@ -181,10 +181,10 @@ function App() {
 
               <div className="wrapper-2 open-tran">
                 {weatherData ? (
-                  <div className="weather-icon flex flex-col justify-center items-center">
+                  <div className="weather-icon  flex flex-col justify-center items-center">
                     {weatherData && (
                       <img
-                        className="h-18"
+                        className="h-18  "
                         src={weatherData.current.condition.icon}
                       />
                     )}
@@ -195,7 +195,7 @@ function App() {
                 )}
               </div>
             </div>
-            <span className="mt-6 text-[12px] hidden  xl:flex">developed by Sujan Thapa</span>
+            <span className="mt-6 text-neutral-500 text-[12px] hidden  absolute bottom-[0.2rem] xl:flex">developed by Sujan Thapa</span>
           </div>
           
         </div>
