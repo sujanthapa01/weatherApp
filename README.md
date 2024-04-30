@@ -1,7 +1,8 @@
 # Weather App
 
 This is a simple weather application built using React.
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](![Screenshot from 2024-05-01 00-48-06](https://github.com/sujanthapa01/weatherApp/assets/158448355/5fb2b9d5-a85a-4e8c-beec-3cf28d7e385b)
+)
 ## Features
 
 - **Current Weather Display**: Users can view the current weather conditions of a specified location, including temperature, humidity, wind speed, and cloud cover.
