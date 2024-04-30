@@ -190,9 +190,9 @@ function App() {
             </form>
           </div>
 
-          <div className="temprature text-center w-full h-[16rem]">
+          <div className="temprature flex justify-center items-center  w-full h-[16rem]">
             {weatherData ? (
-              <span className=" text-[8rem] xl:text-[11rem]  leading-[16rem] open-tran" 
+              <span className=" text-[8rem] xl:text-[11rem] text-center  leading-[16rem] open-tran" 
              >
                 {weatherData.current.temp_c}&deg;
               </span>
