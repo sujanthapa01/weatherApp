@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Searchbar } from "./components"; // Importing Searchbar component
-import sun from "./assets/sun.png"; // Importing sun icon
 import search from "./assets/search.png"; // Importing search icon
 import wetherInfo from "./hooks/wetherinfo"; // Importing weather information hook
 import backgroundImg from "./assets/background.jpg"; // Importing background image
