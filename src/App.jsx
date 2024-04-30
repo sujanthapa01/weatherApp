@@ -5,7 +5,7 @@ import backgroundImg from "./assets/background.jpg"; // Importing background ima
 
 
 function App() {
-  const [location, setLocation] = useState("nepal");
+  const [location, setLocation] = useState("india");
   const [weatherData, setWeatherData] = useState(null);
   const [alert, setAlert] = useState("No matching location found.");
   const [alertVisible, setAlertVisible] = useState(false);
