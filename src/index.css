@@ -107,3 +107,18 @@ transition: all 100ms cubic-bezier(0.85, 0, 0.15, 1) ;
 
 
   
+  #options {
+    opacity: 1; /* Initially hide the options */
+  }
+  
+  #options:hover > #arrow-horizontal {
+    /* When hovering over the options, make the arrow visible */
+    opacity: 1;
+    transform: translateX(10px);
+  }
+  
+  #arrow-horizontal {
+    transition: all ease 300ms;
+    opacity: 0; /* Initially hide the arrow */
+  }
+  
