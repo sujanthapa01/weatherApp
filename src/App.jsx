@@ -166,7 +166,7 @@ function App() {
             </div>
           </div>
           <span className="mt-12 text-[12px] text-neutral-500  text-center xl:hidden">
-            developed by Sujan Thapa
+            developed by <a href="https://sujanthapa.vercel.app/" target="_blank" className=""> Sujan Thapa</a> 
           </span>
         </div>
 
@@ -233,8 +233,8 @@ function App() {
                 )}
               </div>
             </div>
-            <span className="mt-6 text-neutral-500 text-[12px] hidden  absolute bottom-[0.2rem] xl:flex">
-              developed by Sujan Thapa
+            <span className="mt-6 text-neutral-500 text-[12px] hidden  absolute bottom-[0.2rem] xl:block" >
+            developed by <a href="https://sujanthapa.vercel.app/" target="_blank" className=""> Sujan Thapa</a> 
             </span>
           </div>
         </div>
