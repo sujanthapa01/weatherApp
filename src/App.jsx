@@ -3,10 +3,11 @@ import search from "./assets/search.png"; // Importing search icon
 import wetherInfo from "./hooks/wetherinfo"; // Importing weather information hook
 import backgroundImg from "./assets/background.jpg"; // Importing background image
 
+
 function App() {
-  const [location, setLocation] = useState("india");
+  const [location, setLocation] = useState("nepal");
   const [weatherData, setWeatherData] = useState(null);
-  const [alert, setAlert] = useState("Can't find location");
+  const [alert, setAlert] = useState("No matching location found.");
   const [alertVisible, setAlertVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [recentSearches, setRecentSearches] = useState([
@@ -26,6 +27,7 @@ function App() {
 
   const handleOnChange = (e) => {
     setSearchText(e.target.value);
+    setLocation(e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -35,30 +37,39 @@ function App() {
       setAlertVisible(true);
       setTimeout(() => {
         setAlertVisible(false);
+        console.log(alert);
       }, 3000);
     } else {
       setWeatherData(data);
+     
     }
-
     if (searchText.trim() !== "") {
-      const updatedSearches = [searchText, ...recentSearches.slice(0, 3)];
-      setRecentSearches(updatedSearches);
-      setSearchText("");
+      if(data.error){
+
+      }else{
+        const updatedSearches = [searchText, ...recentSearches.slice(0, 3)];
+        setRecentSearches(updatedSearches);
+        setSearchText("");
+      }
     }
   };
+  
 
 
   const scrollRef = useRef(null);
 
  const handleRecentSearch = async (searchText) => {
-    setSearchText(searchText);
-    const data = await wetherInfo(searchText);
-    if (data.error) {
-      setAlertVisible(true);
-      setTimeout(() => {
-        setAlertVisible(false);
+   const data = await wetherInfo(searchText);
+   console.log(data)
+   if (data.error) {
+     setAlertVisible(true);
+     setRecentSearches((prev => prev))
+     setTimeout(() => {
+       setAlertVisible(false);
       }, 3000);
+     
     } else {
+      setSearchText(searchText);
       setWeatherData(data);
     }
 
@@ -122,7 +133,7 @@ function App() {
           </div>
           <div className="h-[50%] ">
             <h3 className=" text-3xl tracking-[.2rem] xl:text-2xl border-b-[1px] text-center xl:text-start pb-4 xl:pb-2 font-bold text-white">
-              Locations
+            Recent 
             </h3>
             <div className="flex items-center xl:items-start flex-col gap-5 xl:gap-3 mt-8 xl:mt-4 open-tran">
               {recentSearches.map((search, index) => (
@@ -159,9 +170,9 @@ function App() {
           </span>
         </div>
 
-        <div className="w-[60%] h-full flex flex-col justify-start ">
+        <div className="w-[60%] h-full flex flex-col justify-start " ref={scrollRef}>
           <div className="flex justify-between items-center gap-5 xl:gap-[0px] flex-col xl:flex-row  mt-4 w-full">
-            <h3 className="text-xl">Forecast</h3>
+            <h3 className="text-xl"  >Forecast</h3>
             <form className="flex items-center gap-2" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -182,7 +193,7 @@ function App() {
           <div className="temprature text-center w-full h-[16rem]">
             {weatherData ? (
               <span className=" text-[8rem] xl:text-[11rem]  leading-[16rem] open-tran" 
-              ref={scrollRef}>
+             >
                 {weatherData.current.temp_c}&deg;
               </span>
             ) : (
@@ -196,7 +207,7 @@ function App() {
               {weatherData ? (
                 <div className="wrapper-1 xl:text-start flex flex-col justify-center xl:items-start open-tran">
                   <span className="text-3xl mt-4  xl:w-rem">
-                    {weatherData && weatherData.location.region}
+                  {weatherData ? (weatherData.location.region || weatherData.location.name) : null}
                   </span>
                   <span className="mt-2 ">
                     {weatherData && weatherData.location.localtime}
