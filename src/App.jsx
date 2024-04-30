@@ -4,7 +4,7 @@ import sun from "./assets/sun.png"; // Importing sun icon
 import search from "./assets/search.png"; // Importing search icon
 import wetherInfo from "./hooks/wetherinfo"; // Importing weather information hook
 import backgroundImg from "./assets/background.jpg"; // Importing background image
-
+import { Analytics } from "@vercel/analytics/react"
 function App() {
   // Styling for background image
   const background = {
@@ -59,6 +59,9 @@ function App() {
       className="flex justify-center h-full xl:h-screen items-center text-center  flex-col relative "
       style={background}
     >
+            {/* Analytics component */}
+            <Analytics/>
+
       <div className={`alert ${alertVisible ? "show" : ""}`}>
   {alert}
       </div>
